@@ -14,24 +14,17 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<ProductResponse> findAll() {
-        return toResponses(productRepository.findAll());
+    // 검색 조건으로 상품 목록을 찾는다. 조건을 하나도 안 보내면 전체 목록
+    public List<ProductResponse> search(ProductSearchCondition condition) {
+        return toResponses(productRepository.findAll(ProductSpecs.search(condition)));
     }
 
     public ProductResponse findById(Long id) {
         Product product = productRepository.findById(id).orElse(null);
         if (product == null) {
-            return null; // 6단계에서 예외 처리로 바꾼다
+            return null; // 7단계에서 예외 처리로 바꾼다
         }
         return ProductResponse.from(product);
-    }
-
-    public List<ProductResponse> findByCategory(String category) {
-        return toResponses(productRepository.findByCategory(category));
-    }
-
-    public List<ProductResponse> findByBrand(String brand) {
-        return toResponses(productRepository.findByBrand(brand));
     }
 
     private List<ProductResponse> toResponses(List<Product> products) {
