@@ -1,39 +1,5 @@
 package com.shunn2.springaireview.product;
 
-public class Product {
-
-    private final Long id;
-    private final String name;
-    private final String brand;
-    private final String category;
-    private final int price;
-
-
-    public Product(Long id, String name, String brand, String category, int price) {
-        this.id = id;
-        this.name = name;
-        this.brand = brand;
-        this.category = category;
-        this.price = price;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getCategory() {
-        return category;
-    }
+// record: 괄호 안에 적은 컴포넌트대로 필드, 생성자, 값 꺼내는 메서드(id(), name() ...)를 Java가 자동으로 만든다
+public record Product(Long id, String name, String brand, String category, int price) {
 }

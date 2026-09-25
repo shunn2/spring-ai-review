@@ -2,6 +2,7 @@ package com.shunn2.springaireview.product;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,10 +20,20 @@ public class ProductService {
 
     public Product findById(Long id) {
         for (Product product : products) {
-            if (product.getId().equals(id)) {
+            if (product.id().equals(id)) {
                 return product;
             }
         }
         return null;
+    }
+
+    public List<Product> findByCategory(String category) {
+        List<Product> result = new ArrayList<>();
+        for (Product product : products) {
+            if (product.category().equals(category)) {
+                result.add(product);
+            }
+        }
+        return result;
     }
 }
