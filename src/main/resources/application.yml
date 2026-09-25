@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: spring-ai-review
+  profiles:
+    default: local        # profile을 따로 정하지 않으면 local로 실행
+  jpa:
+    open-in-view: false   # DB 연결을 요청 처리 중에만 잡아둔다 (실무 권장값)

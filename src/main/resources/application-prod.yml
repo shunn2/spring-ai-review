@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: ${DB_URL}                   # 서버에서 환경변수로 넣어준다
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate             # 운영에서는 테이블을 절대 자동으로 만들거나 지우지 않는다. 확인만

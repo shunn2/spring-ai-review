@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:reviewdb        # 메모리에 reviewdb라는 이름으로 H2 DB를 만든다
+    username: sa
+    password: ${DB_PASSWORD:}        # 환경변수 DB_PASSWORD 값. 없으면 빈 값
+  jpa:
+    hibernate:
+      ddl-auto: create               # 서버 시작 시 Entity를 보고 테이블을 새로 만든다
+    show-sql: true                   # 실행되는 SQL을 콘솔에 보여준다
+    properties:
+      hibernate:
+        format_sql: true             # SQL을 줄맞춤해서 보여준다
+    defer-datasource-initialization: true   # 테이블을 만든 "다음에" data.sql을 실행
+  h2:
+    console:
+      enabled: true                  # http://localhost:8080/h2-console 켜기

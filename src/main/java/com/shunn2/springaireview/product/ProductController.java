@@ -17,16 +17,22 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getProducts(@RequestParam(required = false) String category) {
-        if (category == null) {
-            return productService.findAll();
+    public List<ProductResponse> getProducts(@RequestParam(required = false) String category,
+                                             @RequestParam(required = false) String brand) {
+        // 카테고리를 보냈으면 카테고리로 거른다
+        if (category != null) {
+            return productService.findByCategory(category);
         }
-
-        return productService.findByCategory(category);
+        // 브랜드를 보냈으면 브랜드로 거른다
+        if (brand != null) {
+            return productService.findByBrand(brand);
+        }
+        // 둘 다 안 보냈으면 전체 목록
+        return productService.findAll();
     }
 
     @GetMapping("/products/{id}")
-    public Product getProduct(@PathVariable Long id) {
+    public ProductResponse getProduct(@PathVariable Long id) {
         return productService.findById(id);
     }
 }
